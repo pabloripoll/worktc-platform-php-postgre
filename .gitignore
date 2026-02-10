@@ -32,6 +32,8 @@ dist-ssr
 /platform/pgsql-16/data
 /platform/redis-8.6/data
 /platform/mongodb-8.2/data
+/platform/rabbitmq-4.2/data
+/platform/rabbitmq-4.2/log
 /resources/database/*
 !/resources/database/.gitkeep
 /resources/docs/apirest/project/*
