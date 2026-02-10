@@ -1,0 +1,49 @@
+services:
+
+  mongo:
+    image: ${COMPOSE_PROJECT_IMGK}
+    container_name: ${COMPOSE_PROJECT_LEAD}-${COMPOSE_PROJECT_NAME}
+    ports:
+      - ${COMPOSE_PROJECT_PORT}:27017
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_NAME}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+    deploy:
+      resources:
+        limits:
+          memory: ${COMPOSE_PROJECT_MEM} # On Docker Swarm, move resource limits into 'deploy.resources.limits'
+    networks:
+      - net
+    volumes:
+      - ${COMPOSE_PROJECT_BIND}:/data/db
+    restart: unless-stopped
+
+  mongo-express:
+    image: mongo-express
+    container_name: ${COMPOSE_PROJECT_LEAD}-${COMPOSE_PROJECT_NAME}-express
+    restart: always
+    ports:
+      - ${COMPOSE_PROJECT_APP_PORT}:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/
+      ME_CONFIG_BASICAUTH_ENABLED: true
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_APP_USER}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_APP_PASS}
+    deploy:
+      resources:
+        limits:
+          memory: 128M # On Docker Swarm, move resource limits into 'deploy.resources.limits'
+    networks:
+      - net
+    depends_on:
+      - mongo
+
+networks:
+  net:
+    driver: bridge
+    name: ${COMPOSE_PROJECT_LEAD}-${COMPOSE_PROJECT_CNET}
+
+volumes:
+  mongodb-data:
+    driver: local

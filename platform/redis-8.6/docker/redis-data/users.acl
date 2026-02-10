@@ -1,0 +1,3 @@
+user default off
+user rootuser on >rootpass ~* &* +@all
+user devuser on >devpass ~* &* +@all -@dangerous -@admin
