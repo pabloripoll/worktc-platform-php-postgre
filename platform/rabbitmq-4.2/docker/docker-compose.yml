@@ -17,6 +17,6 @@ services:
           memory: ${COMPOSE_PROJECT_MEM}
     volumes:
         - ../data/:/var/lib/rabbitmq/
-        - .../log/:/var/log/rabbitmq
+        - ../log/:/var/log/rabbitmq
         - ./config/conf.d/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
     restart: unless-stopped
