@@ -170,6 +170,31 @@ Here’s a step-by-step guide for using this Platform repository along with your
 - Choose between Git submodule and detached repository approaches
 <br>
 
+### Estimated consumption
+
+This is the overview of the estimated host machine consumption
+```
+CONTAINER ID   NAME                          CPU %     MEM USAGE / LIMIT   MEM %     NET I/O           BLOCK I/O         PIDS
+4afa058af7a9   wtc-snf-pgsql-dev             0.04%     21.23MiB / 128MiB   16.59%    1.17kB / 126B     1.47MB / 59.5MB   6
+e209405673a1   wtc-snf-mailhog-dev           0.00%     4.902MiB / 128MiB   3.83%     1.3kB / 126B      0B / 0B           6
+ab6c3306a0cd   wtc-snf-mongodb-dev-express   0.00%     39.11MiB / 128MiB   30.55%    202kB / 73.1kB    0B / 0B           12
+98aba2a2da76   wtc-snf-mongodb-dev           1.35%     151.3MiB / 512MiB   29.55%    78.5kB / 202kB    0B / 12.9MB       53
+56ce79ca6c04   wtc-snf-rabbitmq-dev          0.25%     96.2MiB / 128MiB    75.16%    1.37kB / 126B     22.8MB / 17.2MB   37
+d7b90998b52b   wtc-snf-redis-dev             0.53%     8.398MiB / 128MiB   6.56%     4.62kB / 3.77kB   12.3kB / 28.7kB   6
+fad4ece8a496   wtc-snf-apirest-dev           0.04%     55.68MiB / 512MiB   10.87%    35.1kB / 25.8kB   1.65MB / 3.5MB    11
+
+NAME                          CPU %     MEM USAGE  /  LIMIT    MEM %
+wtc-snf-pgsql-dev             0.04%     21.23MiB   /  128MiB   16.59%
+wtc-snf-mailhog-dev           0.00%     4.902MiB   /  128MiB   3.83%
+wtc-snf-mongodb-dev-express   0.00%     39.11MiB   /  128MiB   30.55%
+wtc-snf-mongodb-dev           1.35%     151.3MiB   /  512MiB   29.55%
+wtc-snf-rabbitmq-dev          0.25%     96.2MiB    /  128MiB   75.16%
+wtc-snf-redis-dev             0.53%     8.398MiB   /  128MiB   6.56%
+wtc-snf-apirest-dev           0.04%     55.68MiB   /  512MiB   10.87%
+----------------------------------------------------------------------
+--------------------------------------- 376.812MiB /  1664MiB
+```
+
 ### Managing the `apirest` Directory: Submodule vs Detached Repository
 
 To remove the `./apirest` directory with the default installation content and install your desired repository inside it, there are two alternatives for managing both the platform and apirest repositories independently:
