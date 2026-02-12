@@ -91,6 +91,7 @@ RUN apk add --no-cache \
   # Postgre
   ${PHP_V}-pgsql \
   ${PHP_V}-pdo_pgsql \
+  postgresql-dev \
   # MongoDB
   ${PHP_V}-pecl-mongodb \
   # Redis
@@ -110,6 +111,8 @@ RUN set -eux; \
 
 # Install PHP required extensions from Docker
 RUN docker-php-ext-install \
+  pdo \
+  pdo_pgsql \
   pcntl \
   sockets
 
